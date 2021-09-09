@@ -4,8 +4,18 @@ DoubleHolder::DoubleHolder(double d) {
     this->innerDouble = d;
 }
 
-std::size_t DoubleHolder::write(std::ostream& o, void* value) {
-    const auto pos = o.tellp();
-    o.write(reinterpret_cast<const char*>(&innerDouble), sizeof(innerDouble));
-    return static_cast<std::size_t>(o.tellp() - pos);
+void DoubleHolder::serialize(std::ostream& os) override {
+    os << this->innerDouble;
+    for (auto const& x: this->children) {
+        x->serialize(os);
+    }
+    os << MARKER;
+}
+
+void DoubleHolder::describe() const {
+    std::cout << "ELement is a DoubleHolder with value: |" << this->innerDouble << "|. It has " << this->children.size() << " children." << std::endl;
+    if (this->children.size() > 0) {
+        for(auto const& x: this->children) {
+            x->describe();
+    }
 }

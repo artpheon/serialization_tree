@@ -5,8 +5,23 @@ CharArrayHolder::CharArrayHolder(const char* arr) {
     std::memcpy(this->innerArray, arr, sizeof(this->innerArray));
 }
 
-std::size_t CharArrayHolder::write(std::ostream& o, void* value) {
-    const auto pos = o.tellp();
-    o.write(reinterpret_cast<const char*>(&innerArray), sizeof(innerArray));
-    return static_cast<std::size_t>(o.tellp() - pos);
+void CharArrayHolder::serialize(std::ostream& os) {
+    os << "c" << this->innerArray;
+    for (auto const& x: this->children) {
+        x->serialize(os);
+    }
+    os << MARKER;
+}
+
+void CharArrayHolder::deserialize(std::istream& is) {
+    
+}
+
+
+void CharArrayHolder::describe() const {
+    std::cout << "Element is a CharArrayHolder with value: |" << this->innerArray << "|. It has " << this->children.size() << " children." << std::endl;
+    if (this->children.size() > 0) {
+        for(auto const& x: this->children) {
+            x->describe();
+    }
 }

@@ -5,16 +5,44 @@ int main() {
     fb.open ("data", std::ios::out);
     std::ostream os(&fb);
 
-    BaseHolder* val = new IntHolder(45);
-    val->write(os, nullptr);
-    BaseHolder* val2 = new CharArrayHolder("new text");
-    val2->write(os, nullptr);
-    BaseHolder* val3 = new DoubleHolder(66.6);
-    val3->write(os, nullptr);
+    BaseHolder* l1v1 = new IntHolder(1);
+
+    BaseHolder* l2v1 = new IntHolder(2011);
+    BaseHolder* l2v2 = new CharArrayHolder("C++");
+    BaseHolder* l2v3 = new DoubleHolder(3.14);
+
+    BaseHolder* l3v1 = new CharArrayHolder("FULCRUM");
+    BaseHolder* l3v2 = new CharArrayHolder("TEST");
+    BaseHolder* l3v3 = new IntHolder(9);
+    BaseHolder* l3v4 = new IntHolder(6);
+
+    BaseHolder* l4v1 = new CharArrayHolder("LINUX");
+    BaseHolder* l4v2 = new IntHolder(7);
+
+    l1v1->addChild(l2v1);
+    l1v1->addChild(l2v2);
+    l1v1->addChild(l2v3);
+
+    l2v1->addChild(l3v1);
+    l3v1->addChild(l4v1);
+    l3v1->addChild(l4v2);
+
+    l2v3->addChild(l3v2);
+    l2v3->addChild(l3v3);
+    l2v3->addChild(l3v4);
+
+    l1v1->describe();
 
     fb.close();
-    delete val;
-    delete val2;
-    delete val3;
+    delete l1v1;
+    delete l2v1;
+    delete l2v2;
+    delete l2v3;
+    delete l3v1;
+    delete l3v2;
+    delete l3v3;
+    delete l3v4;
+    delete l4v1;
+    delete l4v2;
     return 0;
 }

@@ -6,7 +6,8 @@ class DoubleHolder: public BaseHolder {
         double    innerDouble;
     public:
         DoubleHolder(double d);
-        std::size_t write(std::ostream& o, void* value) override;
+        void serialize(std::ostream& os) override;
+        void describe() const override;
 };
 
 #endif

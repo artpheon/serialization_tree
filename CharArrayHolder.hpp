@@ -6,7 +6,9 @@ class CharArrayHolder: public BaseHolder {
         char    innerArray[10];
     public:
         CharArrayHolder(const char* arr);
-        std::size_t write(std::ostream& o, void* value) override;
+        void serialize(std::ostream& os) override;
+        void deserialize(std::istream& is) override;
+        void describe() const override;
 };
 
 #endif

@@ -3,13 +3,15 @@
 
 class BaseHolder {
     private:
-        BaseHolder* parent;
+    protected:
         std::vector<BaseHolder*> children;
     public:
         BaseHolder();
         BaseHolder*    setParent(BaseHolder* p);
         BaseHolder*    addChild(BaseHolder* ch);
-        virtual std::size_t write(std::ostream& o, void* value) = 0;
+        virtual void serialize(std::ostream& os) = 0;
+        virtual void deserialize(std::ostream& os) = 0;
+        virtual void describe() = 0;
         virtual ~BaseHolder();
 };
 

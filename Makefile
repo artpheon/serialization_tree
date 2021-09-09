@@ -2,7 +2,7 @@ NAME		= tree
 SRC			= main.cpp BaseHolder.cpp IntHolder.cpp CharArrayHolder.cpp DoubleHolder.cpp 
 OBJ			= $(SRC:.cpp=.o)
 HEAD		= main.hpp BaseHolder.hpp IntHolder.hpp CharArrayHolder.hpp DoubleHolder.hpp
-CC			= clang++
+CC			= clang++ -I/Users/hrobbin/goinfre/homebrew/Cellar/boost/1.76.0/include/
 
 
 %.o:	%.cpp

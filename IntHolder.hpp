@@ -6,7 +6,8 @@ class IntHolder : public BaseHolder {
         std::int32_t innerInt;
     public:
         IntHolder(std::int32_t i);
-        std::size_t write(std::ostream& o, void* value) override;
+        void serialize(std::ostream& os) override;
+        void describe() const override;
 };
 
 #endif
