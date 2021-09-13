@@ -1,8 +1,5 @@
 #include "main.hpp"
 
-void serializeLikeTree(BaseHolder* root) {
-    
-}
 
 int main() {
     std::filebuf fb;
@@ -36,8 +33,14 @@ int main() {
     l2v3->addChild(l3v4);
 
     l1v1->describe();
+    l1v1->serialize(os);
 
     fb.close();
+    fb.open ("data", std::ios::in);
+    std::istream is(&fb);
+    BaseHolder* deserialized = nullptr;
+    deserialized = BaseHolder::deserialize(is, deserialized, 0);
+
     delete l1v1;
     delete l2v1;
     delete l2v2;

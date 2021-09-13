@@ -7,8 +7,7 @@ class IntHolder : public BaseHolder {
     public:
         IntHolder(std::int32_t i);
         void serialize(std::ostream& os) override;
-        BaseHolder* deserialize(std::istream& is) override;
-        void describe() const override;
+        void describe() override;
 };
 
 #endif
