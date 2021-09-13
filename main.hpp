@@ -12,5 +12,10 @@
 #include "IntHolder.hpp"
 #include "CharArrayHolder.hpp"
 #include "DoubleHolder.hpp"
-#define MARKER ';'
+#define INT_MARK 'i'
+#define DBL_MARK 'd'
+#define CHR_MARK 'c'
+#define STOP ';'
+#define DOWN '>'
+#define UP '<'
 #endif

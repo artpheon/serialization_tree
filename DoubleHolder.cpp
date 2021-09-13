@@ -5,11 +5,18 @@ DoubleHolder::DoubleHolder(double d) {
 }
 
 void DoubleHolder::serialize(std::ostream& os) override {
-    os << this->innerDouble;
-    for (auto const& x: this->children) {
-        x->serialize(os);
-    }
-    os << MARKER;
+    os << DBL_MARK;
+    os.write(reinterpret_cast<const char*>(&innerDouble), sizeof(double));
+    os << STOP;
+    write_children(os);
+}
+
+BaseHolder* DoubleHolder::deserialize(std::istream& is) {
+    double t = 0.0;
+    is.read(&t, sizeof(double));
+    is.read(nullptr, 1);
+    BaseHolder* ret = new DoubleHolder(t);
+    return ret;
 }
 
 void DoubleHolder::describe() const {

@@ -6,15 +6,18 @@ CharArrayHolder::CharArrayHolder(const char* arr) {
 }
 
 void CharArrayHolder::serialize(std::ostream& os) {
-    os << "c" << this->innerArray;
-    for (auto const& x: this->children) {
-        x->serialize(os);
-    }
-    os << MARKER;
+    os << CHR_MARK;
+    os.write(innerArray, sizeof innerArray);
+    os << STOP;
+    write_children(os);
 }
 
-void CharArrayHolder::deserialize(std::istream& is) {
-    
+BaseHolder* CharArrayHolder::deserialize(std::istream& is) {
+    char buf[10] = {0};
+    is.read(buf, 10);
+    is.read(nullptr, 1);
+    BaseHolder* ret = new CharArrayHolder(buf);
+    return ret;
 }
 
 

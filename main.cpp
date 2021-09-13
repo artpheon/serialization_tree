@@ -1,5 +1,9 @@
 #include "main.hpp"
 
+void serializeLikeTree(BaseHolder* root) {
+    
+}
+
 int main() {
     std::filebuf fb;
     fb.open ("data", std::ios::out);

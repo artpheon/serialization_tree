@@ -7,6 +7,7 @@ class DoubleHolder: public BaseHolder {
     public:
         DoubleHolder(double d);
         void serialize(std::ostream& os) override;
+        BaseHolder* deserialize(std::istream& is) override; 
         void describe() const override;
 };
 
