@@ -14,7 +14,7 @@ $(NAME): $(OBJ) $(HEAD)
 	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ) data
+	rm -rf $(OBJ) random_tree example_tree
 
 fclean: clean
 	rm -rf $(NAME)

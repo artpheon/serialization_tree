@@ -3,9 +3,13 @@
 
 class DoubleHolder: public BaseHolder {
     private:
-        double    innerDouble;
+        double    innerDouble{};
+        DoubleHolder();
     public:
-        DoubleHolder(double d);
+        explicit DoubleHolder(double d);
+        DoubleHolder(const DoubleHolder& rhs);
+        DoubleHolder& operator=(const DoubleHolder& rhs);
+        ~DoubleHolder() override;
         void serialize(std::ostream& os) override;
         void describe() override;
 };

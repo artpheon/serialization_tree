@@ -4,8 +4,12 @@
 class IntHolder : public BaseHolder {
     private:
         std::int32_t innerInt;
+        IntHolder();
     public:
-        IntHolder(std::int32_t i);
+        explicit IntHolder(std::int32_t i);
+        IntHolder(const IntHolder& rhs);
+        IntHolder& operator=(const IntHolder& rhs);
+        ~IntHolder() override;
         void serialize(std::ostream& os) override;
         void describe() override;
 };

@@ -3,9 +3,13 @@
 
 class CharArrayHolder: public BaseHolder {
     private:
-        char    innerArray[10];
+        char    innerArray[10]{};
+        CharArrayHolder();
     public:
-        CharArrayHolder(const char* arr);
+        explicit CharArrayHolder(const char* arr);
+        CharArrayHolder(const CharArrayHolder& rhs);
+        CharArrayHolder& operator=(const CharArrayHolder& rhs);
+        ~CharArrayHolder() override;
         void serialize(std::ostream& os) override;
         void describe() override;
 };
